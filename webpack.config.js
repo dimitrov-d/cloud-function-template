@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   target: 'node',
-  entry: './index.ts',
+  entry: './src/index.ts',
   module: {
     rules: [
       {
