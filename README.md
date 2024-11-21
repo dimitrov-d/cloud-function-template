@@ -21,6 +21,16 @@ _STD_.ws.open(
 );
 ```
 
+The request body should contain all the data you wish to send to the cloud function before it is executed.
+
+Example request body:
+`HTTP POST`
+```json
+{
+  "method": "buckets"
+}
+```
+
 This template and deployment process allow you to leverage Acurast's decentralized infrastructure for running your Node.js scripts, ensuring they are accessible and callable through the Apillon gateway. For more detailed runtime environment documentation, you can refer to the [Acurast Developer Docs](https://docs.acurast.com/developers/deployment-runtime-environment).
 
 - **`_STD_` Object**: This is a special object provided by the Acurast runtime environment. It exposes various functionalities, including WebSocket operations, environment variable access, and more.
@@ -33,7 +43,7 @@ This template and deployment process allow you to leverage Acurast's decentraliz
 
 1. **Edit the Script**: You can modify the `index.ts` file and add additional files or folders as needed for your application logic.
 
-2. **Environment Variables**: Access environment variables using `_STD_.env["APILLON_API_KEY"]`. This is crucial for securely managing sensitive information like API keys.
+2. **Environment Variables**: Access environment variables using `_STD_.env["APILLON_API_KEY"]`. This is crucial for securely managing sensitive information like API keys. You can modify the environment variables through the [Apillon developer console](https://app.apillon.io/dashboard/service/cloud-functions/).
 
 3. **Build the Script**:
    - Run `npm run i` to install dependencies.
@@ -42,5 +52,13 @@ This template and deployment process allow you to leverage Acurast's decentraliz
 4. **Deploy the Script**:
    - **Via Apillon Dashboard**: Upload the `index.bundle.js` file to the Apillon dashboard at [Apillon Cloud Functions](https://app.apillon.io/dashboard/service/cloud-functions/).
    - **Via API**: Alternatively, you can deploy the script using the Apillon API. Documentation for this process is available at [Apillon Web3 Cloud Functions](https://wiki-staging.apillon.io/web3-services/8-web3-cloud-functions.html) and [Apillon Cloud Functions API](https://wiki-staging.apillon.io/build/11-cloud-functions-api.html).
+   - **Via SDK**: You can also deploy and manage cloud functions using the Apillon SDK. Documentation for this process is available at [Apillon SDK](https://wiki-staging.apillon.io/build/5-apillon-sdk.html#cloud-functions).
+   - **Via CLI**: You can also deploy the script using the Apillon CLI. Documentation for this process is available at [Apillon CLI](https://wiki-staging.apillon.io/build/6-apillon-cli.html#cloud-function-commands).
 
 5. **Obtain Execution Endpoint**: After deploying, wait a few minutes. You will obtain the callable endpoint to execute the job on the Apillon dashboard.
+
+### Executing the Cloud Function
+
+Once your cloud function is deployed and running, Apillon provides you with a gateway URL that you are able to call via an HTTP POST request.
+The URL can be found on the [Apillon developer console](https://app.apillon.io/dashboard/service/cloud-functions/) when opening a specific cloud function, or it can be obtained by using the [Cloud Functions API](https://wiki.apillon.io/build/11-cloud-functions-api.md).
+
